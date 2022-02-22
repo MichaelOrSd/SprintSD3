@@ -1,5 +1,5 @@
 const fs = require("fs");
-const fsPromises = require("fs").promises;
+// const fsPromises = require("fs").promises;
 const path = require("path");
 
 let init = `
@@ -25,6 +25,7 @@ function initializeApp() {
       createInit();
       createConfig();
       if (DEBUG) console.log("initializeApp.createInit() --cat");
+      console.log("config ran");
       break;
     default:
       if (DEBUG) console.log("initializeApp - default");
@@ -100,6 +101,7 @@ function createConfig() {
 // }
 
 module.exports = {
+  initializeApp,
   init: init,
   config: config,
 };
