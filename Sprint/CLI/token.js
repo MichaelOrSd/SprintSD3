@@ -4,6 +4,7 @@ const { format } = require("date-fns");
 const fs = require("fs");
 const path = require("path");
 
+// fn to make the token expire after 3 days
 function addDays(date, days) {
   var result = new Date(date);
   result.setDate(result.getDate() + days);
