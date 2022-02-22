@@ -2,15 +2,15 @@ myapp init <command>
 
 Usage:
 
-myapp init --all.....            creates the folder structure and config files for the
-myapp init --mk......            creates the folder structure and config files for
-myapp init --cat.....            creates the config file with default settings
-myapp config --show..            displays a list of the current config settings
-myapp config --reset.            resets the config file with default settings
-myapp config --set...            sets a sspecific config settings
-myapp token --count..            displays a count of the token created
-myapp token --new <username>     generates a token for a given username, saves tokens to the json file 
-myapp token --fetch <username>   fetches a token for a given username
+myapp init --all.....               creates the folder structure and config files for the
+myapp init --mk......               creates the folder structure and config files for
+myapp init --cat.....               creates the config file with default settings
+myapp config --show..               displays a list of the current config settings
+myapp config --reset.               resets the config file with default settings
+myapp config --set...               sets a sspecific config settings
+myapp token --count..               displays a count of the token created
+myapp token --new <username>        generates a token for a given username, saves tokens to the json file 
+myapp token --fetch <username>      fetches a token for a given username
 myapp token --search u <username>
 myapp token --search e <email>
 myapp token --search p <phone> 
