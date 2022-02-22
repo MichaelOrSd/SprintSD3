@@ -4,6 +4,7 @@ const config = require("./config.json");
 const fileName = "./config.json";
 const file = require(fileName);
 
+// switch statement to help with config options
 function configApp() {
   const myArgs = process.argv.slice(2);
   switch (myArgs[1]) {
@@ -25,6 +26,7 @@ function configReset() {
   }
 }
 
+// updates a part of the config.json file.
 file.name = "new value";
 function updateConfig() {
   fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
