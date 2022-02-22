@@ -1,24 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 const config = require("./config.json");
+const fileName = "./config.json";
+const file = require(fileName);
 
-// fs.readFile(__dirname + "/config.json", (error, data) => {
-//   if (error) throw error;
-//   //    console.log(data);
-//   //    console.log(JSON.parse(data));
-//   let cfg = JSON.parse(data);
-//   //update an existing attribute
-//   cfg.main = "test";
-//   //add a new attribute
-//   cfg.database = "testdb";
-//   //console.log(cfg);
-
-//   data = JSON.stringify(cfg, null, 2);
-//   fs.writeFile(__dirname + "/config.json", data, (err) => {
-//     if (err) throw err;
-//     console.log("Data written to file");
-//   });
-// });
 function configApp() {
   const myArgs = process.argv.slice(2);
   switch (myArgs[1]) {
@@ -40,12 +25,13 @@ function configReset() {
   }
 }
 
+file.name = "new value";
 function updateConfig() {
-  fs.appendFile(
-    path.join(__dirname, "./config.json", (err) => {
-      if (err) console.log(err);
-      console.log("updated the config file");
-    })
-  );
+  fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
+    if (err) return console.log(err);
+    console.log(JSON.stringify(file, null, 2));
+    console.log("writing to " + fileName);
+  });
 }
+
 module.exports = { configApp, updateConfig };
