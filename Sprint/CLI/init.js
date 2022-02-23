@@ -1,5 +1,5 @@
 const fs = require("fs");
-const fsPromises = require("fs").promises;
+// const fsPromises = require("fs").promises;
 const path = require("path");
 
 let init = `
@@ -16,13 +16,15 @@ function initializeApp() {
 
   switch (myArgs[1]) {
     case "--all":
+      createInit();
+      createConfig();
       if (DEBUG) console.log("initializeApp.All() --all");
       break;
     case "--mk":
+      createInit();
       if (DEBUG) console.log("initializeApp.All() --mk");
       break;
     case "--cat":
-      createInit();
       createConfig();
       if (DEBUG) console.log("initializeApp.createInit() --cat");
       console.log("config ran");

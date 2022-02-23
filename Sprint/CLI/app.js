@@ -32,6 +32,7 @@ date, Author, description;
 // code to turn on or off the console.log statements
 // set to true to turn on, false to turn off
 global.DEBUG = true;
+
 const fs = require("fs");
 const { initializeApp } = require("./init.js");
 const { configApp } = require("./config.js");

@@ -31,7 +31,7 @@ function configReset() {
   });
 }
 
-// updates whichever piece of dat in the config.json file you indicate.
+// updates whichever piece of data is in the config.json file you indicate.
 const myArgs = process.argv.slice(2);
 function configSet() {
   let match = false;
