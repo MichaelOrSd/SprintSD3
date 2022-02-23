@@ -9,7 +9,7 @@ const fileName = "./config.json";
 const file = require(fileName);
 
 // switch statement to help with config options
-// function configApp() {
+function configApp() {
 const myArgs = process.argv.slice(2);
 if (DEBUG) if (myArgs.length > 1) console.log("the myapp.args: ", myArgs);
 switch (myArgs[1]) {
@@ -67,4 +67,4 @@ function configShow() {
   });
 }
 
-// module.exports = { configApp };
+module.exports = { configApp };
