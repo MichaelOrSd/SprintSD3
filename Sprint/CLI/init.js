@@ -7,9 +7,9 @@ myapp init <command>
 
 Usage:
 
-myapp init --all          creates the folder structure and config file
-myapp init --mk           creates the folder structure
-myapp init --cat          creates the config file with default settings`;
+app init --all          creates the folder structure and config file
+app init --mk           creates the folder structure
+app init --cat          creates the config file with default settings`;
 
 function initializeApp() {
   const myArgs = process.argv.slice(2);
