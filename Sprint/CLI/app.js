@@ -9,7 +9,7 @@ myapp init --mk......            creates the folder structure and config files f
 myapp init --cat.....            creates the config file with default settings
 myapp config --show..            displays a list of the current config settings
 myapp config --reset.            resets the config file with default settings
-myapp config --set...            sets a sspecific config settings
+myapp config --set...            sets a specific config settings
 myapp token --count..            displays a count of the token created
 myapp token --new <username>     generates a token for a given username, saves tokens to the json file 
 myapp token --fetch <username>   fetches a token for a given username
@@ -20,7 +20,7 @@ myapp token --search p <phone>
 created Date: 21 Feb 2022
 Authors: Michael O'Reilly, Roderick Wells
 Revision: 1.0 
-Revissions:
+Revisions:
 date, Author, description; 
 1. 21 Feb 2022 by Michael O'Reilly
    The first revision description should go here.
@@ -31,9 +31,10 @@ date, Author, description;
 
 // code to turn on or off the console.log statements
 // set to true to turn on, false to turn off
-global.DEBUG = true;
+global.DEBUG = false;
 const fs = require("fs");
 const { initializeApp } = require("./init.js");
+const { configApp } = require("./config.js");
 
 const myArgs = process.argv.slice(2);
 if (DEBUG) if (myArgs.length > 1) console.log("the myapp.args: ", myArgs);
@@ -47,7 +48,7 @@ switch (myArgs[0]) {
   case "config":
   case "c":
     if (DEBUG) console.log(myArgs[0], " - display the config file.");
-    //configApp();
+    configApp();
     break;
   case "token":
   case "t":
