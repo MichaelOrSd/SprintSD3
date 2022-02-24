@@ -1,0 +1,17 @@
+/*
+
+commands:
+app init --all.....            creates the folder structure and config files for the
+app init --mk......            creates the folder structure and config files for
+app init --cat.....            creates the config file with default settings
+app config --show..            displays a list of the current config settings
+app config --reset.            resets the config file with default settings
+app config --set...            sets a specific config settings
+app token --count..            displays a count of the token created
+app token --new <username>     generates a token for a given username, saves tokens to the json file 
+app token --fetch <username>   fetches a token for a given username
+app token --search u <username>
+app token --search e <email>
+app token --search p <phone> 
+
+ */
