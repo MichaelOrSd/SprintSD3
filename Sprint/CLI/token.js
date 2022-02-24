@@ -108,7 +108,7 @@ function newToken(username) {
 function updateToken(argv) {
   if (DEBUG) console.log("token.updateToken()");
   if (DEBUG) console.log(argv);
-  fs.readFile(__dirname + "./tokens.json", "utf8", (error, data) => {
+  fs.readFile(__dirname + "/tokens.json", "utf8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     tokens.forEach((obj) => {
