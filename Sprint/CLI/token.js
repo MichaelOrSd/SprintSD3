@@ -45,7 +45,7 @@ const myArgs = process.argv.slice(2);
 
 function tokenCount() {
   if (DEBUG) console.log("token.tokenCount()");
-  fs.readFile(__dirname, +"./tokens.json", "utf-8", (error, data) => {
+  fs.readFile(__dirname, +"/tokens.json", "utf-8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     let cnt = Object.keys(tokens).length;
