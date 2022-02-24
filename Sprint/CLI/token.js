@@ -23,7 +23,7 @@ some text here to keep code line in place
 
 // add logging to the CLI
 //load the logEvents module
-// const logEvents = require("./logEvents");
+const logEvents = require("./logEvents");
 
 // define/extend an EventEmitter class
 const EventEmitter = require("events");
@@ -44,43 +44,33 @@ const { format } = require("date-fns"); // 402 (gzipped: 261)
 const myArgs = process.argv.slice(2);
 
 function tokenCount() {
-  if (DEBUG) console.log("tokenCount()");
-  fs.readFile(__dirname, +"./jason/tokens.json", "utf-8", (error, data) => {
+  if (DEBUG) console.log("token.tokenCount()");
+  fs.readFile(__dirname, +"./tokens.json", "utf-8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     let cnt = Object.keys(tokens).length;
     console.log(`Current token count is ${cnt}.`);
-    myEmitter.emit(
-      "log",
-      "tokens.tokenCount()",
-      "INFO",
-      `Current token count is ${cnt}.`
-    );
+    myEmitter.emit("log", "token.tokenCount()", "INFO", `Current token count is ${cnt}.`);
   });
 }
 
 function tokenList() {
   if (DEBUG) console.log("token.tokenCount()");
-  fs.readFile(__dirname, +"./jason/tokens.json", "utf-8", (error, data) => {
+  fs.readFile(__dirname, +"./tokens.json", "utf-8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     console.log("** User List **");
     tokens.forEach((obj) => {
       console.log(" * " + obj.username + ": " + obj.token);
     });
-    myEmitter.emit(
-      "log",
-      "tokens.tokenList()",
-      "INFO",
-      `Current token list was displayed.`
-    );
+    myEmitter.emit("log", "tokens.tokenList()", "INFO", `Current token list was displayed.`);
   });
 }
 
 function newToken(username) {
   if (DEBUG) console.log("token.newToken()");
 
-  let enwToken = JSON.parse(`{
+  let newToken = JSON.parse(`{
         "created": "2020-01-01 12:30:00",
         "username": "username",
         "email": "user@example.com",
@@ -98,24 +88,17 @@ function newToken(username) {
   newToken.token = crc32(username).toString(16);
   newToken.expires = `${format(expires, "yyyy-MM-dd HH:mm:ss")}`;
 
-  fs.readFile(__dirname + "/json/token.json", "utf8", (error, data) => {
+  fs.readFile(__dirname + "./tokens.json", "utf8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     tokens.push(newToken);
     userTokens = JSON.stringify(tokens);
 
-    fs.writeFile(__dirname + "/json/token.json", userTokens, (err) => {
+    fs.writeFile(__dirname + "./tokens.json", userTokens, (err) => {
       if (err) console.log(err);
       else {
-        console.log(
-          `New token ${newTokens.token} was created for ${username}.`
-        );
-        myEmitter.emit(
-          "log",
-          "tokens.newToken()",
-          "INFO",
-          `New token ${newTokens.token} was created for ${username}.`
-        );
+        console.log(`New token ${newTokens.token} was created for ${username}.`);
+        myEmitter.emit("log", "tokens.newToken()", "INFO", `New token ${newTokens.token} was created for ${username}.`);
       }
     });
   });
@@ -125,7 +108,7 @@ function newToken(username) {
 function updateToken(argv) {
   if (DEBUG) console.log("token.updateToken()");
   if (DEBUG) console.log(argv);
-  fs.readFile(__dirname + "/json/tokens.json", "utf8", (error, data) => {
+  fs.readFile(__dirname + "./tokens.json", "utf8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     tokens.forEach((obj) => {
@@ -146,16 +129,11 @@ function updateToken(argv) {
       }
     });
     userTokens = JSON.stringify(tokens);
-    fs.watchFile(__dirname + "/json/tokens.json", userTokens, (err) => {
+    fs.watchFile(__dirname + "./tokens.json", userTokens, (err) => {
       if (err) console.log(err);
       else {
         console.log(`Token record for ${argv[3]} was updated with ${argv[4]}.`);
-        myEmitter.emit(
-          "log",
-          "tokens.updateToken()",
-          "INFO",
-          `Token ${argv[3]} was updated.`
-        );
+        myEmitter.emit("log", "tokens.updateToken()", "INFO", `Token ${argv[3]} was updated.`);
       }
     });
   });
@@ -163,18 +141,13 @@ function updateToken(argv) {
 
 function fetchRecord(username) {
   if (DEBUG) console.log("token.fetchRecord()");
-  fs.readFile(__dirname + "/json/token.json", "utf8", (error, data) => {
+  fs.readFile(__dirname + "./tokens.json", "utf8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     tokens.forEach((obj) => {
       if (obj.username === username) {
         console.log(obj);
-        myEmitter.emit(
-          "log",
-          "token.fetchRecord()",
-          "INFO",
-          `Token record for ${username} was displayed.`
-        );
+        myEmitter.emit("log", "token.fetchRecord()", "INFO", `Token record for ${username} was displayed.`);
       }
     });
   });
@@ -182,12 +155,7 @@ function fetchRecord(username) {
 
 function searchToken() {
   if (DEBUG) console.log("token.searchToken()");
-  myEmitter.emit(
-    "log",
-    "token.searchToken()",
-    "INFO",
-    `Token was found for xxx.`
-  );
+  myEmitter.emit("log", "token.searchToken()", "INFO", `Token was found for xxx.`);
 }
 
 function addDays(date, days) {
@@ -198,12 +166,7 @@ function addDays(date, days) {
 
 function tokenApp() {
   if (DEBUG) console.log("tokenApp()");
-  myEmitter.emit(
-    "log",
-    "token.tokenApp()",
-    "INFO",
-    `Token option was called by CLI.`
-  );
+  myEmitter.emit("log", "token.tokenApp()", "INFO", `Token option was called by CLI.`);
 
   switch (myArgs[1]) {
     case "--count":
@@ -231,12 +194,7 @@ function tokenApp() {
         if (error) throw error;
         console.log(data.toString());
       });
-      myEmitter.emit(
-        "log",
-        "token.tokenApp()",
-        "INFO",
-        `Token help was displayed.`
-      );
+      myEmitter.emit("log", "token.tokenApp()", "INFO", `Token help was displayed.`);
   }
 }
 
