@@ -4,10 +4,10 @@
 
 
 
-
-
-
-
+app token --count
+app token --list
+app token --new
+app token --update p or e <username> <phone or email>
 app token --fetch <username>
 app token --search u <username>
 app token --search e <email>
@@ -129,7 +129,7 @@ function updateToken(argv) {
       }
     });
     userTokens = JSON.stringify(tokens);
-    fs.watchFile(__dirname + "/tokens.json", userTokens, (err) => {
+    fs.writeFile(__dirname + "/tokens.json", userTokens, (err) => {
       if (err) console.log(err);
       else {
         console.log(`Token record for ${argv[3]} was updated with ${argv[4]}.`);
