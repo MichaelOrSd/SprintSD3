@@ -1,3 +1,5 @@
+// global.DEBUG = true;
+
 const fs = require("fs");
 // const fsPromises = require("fs").promises;
 const path = require("path");
@@ -16,17 +18,17 @@ function initializeApp() {
 
   switch (myArgs[1]) {
     case "--all":
-      createInit();
-      createConfig();
+      createFolder();
+      createFile();
       if (DEBUG) console.log("initializeApp.All() --all");
       break;
     case "--mk":
-      createInit();
+      createFolder();
       if (DEBUG) console.log("initializeApp.All() --mk");
       break;
     case "--cat":
-      createConfig();
-      if (DEBUG) console.log("initializeApp.createInit() --cat");
+      createFile();
+      if (DEBUG) console.log("initializeApp.createFile() --cat");
       console.log("config ran");
       break;
     default:
@@ -34,7 +36,7 @@ function initializeApp() {
   }
 }
 
-function createInit() {
+function createFolder() {
   if (fs.existsSync(path.join(__dirname, "./views"))) {
     fs.writeFile(path.join(__dirname, "views", "init.txt"), init, (err) => {
       if (err) console.log(err);
@@ -48,7 +50,7 @@ function createInit() {
   }
 }
 
-const config = {
+const configTemp = {
   name: "AppConfigCLI",
   version: "1.0.0",
   description: "The Command Line Interface (CLI) for the MyApp.",
@@ -57,9 +59,9 @@ const config = {
   database: "testdb",
 };
 
-function createConfig() {
+function createFile() {
   try {
-    let data = json.stringify(config, null, 2);
+    let data = JSON.stringify(configTemp, null, 2);
     if (!fs.existsSync(path.join(__dirname, "config.json"))) {
       fs.writeFile("config.json", data, (err) => {
         if (DEBUG) console.log("Data written to config.json file.");
@@ -74,5 +76,5 @@ function createConfig() {
 
 module.exports = {
   initializeApp,
-  config,
+  configTemp,
 };

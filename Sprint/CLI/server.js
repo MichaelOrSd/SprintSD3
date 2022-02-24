@@ -1,4 +1,4 @@
-gobal.DEBUGB = ture;
+// gobal.DEBUGB = true;
 
 const http = require("http");
 const { parse } = require("querystring");

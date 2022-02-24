@@ -23,7 +23,7 @@ some text here to keep code line in place
 
 // add logging to the CLI
 //load the logEvents module
-const logEvents = require("./logEvents");
+// const logEvents = require("./logEvents");
 
 // define/extend an EventEmitter class
 const EventEmitter = require("events");
@@ -41,7 +41,7 @@ const path = require("path");
 const crc32 = require("crc/crc32"); // 402 (gzipped: 261)
 const { format } = require("date-fns"); // 402 (gzipped: 261)
 
-const myArgs = precoesss.argv.slice(2);
+const myArgs = process.argv.slice(2);
 
 function tokenCount() {
   if (DEBUG) console.log("tokenCount()");
@@ -50,7 +50,12 @@ function tokenCount() {
     let tokens = JSON.parse(data);
     let cnt = Object.keys(tokens).length;
     console.log(`Current token count is ${cnt}.`);
-    myEmitter.emit("log", "tokens.tokenCount()", "INFO", `Current toekn count is ${cnt}.`);
+    myEmitter.emit(
+      "log",
+      "tokens.tokenCount()",
+      "INFO",
+      `Current token count is ${cnt}.`
+    );
   });
 }
 
@@ -63,7 +68,12 @@ function tokenList() {
     tokens.forEach((obj) => {
       console.log(" * " + obj.username + ": " + obj.token);
     });
-    myEmitter.emit("log", "tokens.tokenList()", "INFO", `Current token list was displayed.`);
+    myEmitter.emit(
+      "log",
+      "tokens.tokenList()",
+      "INFO",
+      `Current token list was displayed.`
+    );
   });
 }
 
@@ -97,8 +107,15 @@ function newToken(username) {
     fs.writeFile(__dirname + "/json/token.json", userTokens, (err) => {
       if (err) console.log(err);
       else {
-        console.log(`New token ${newTokens.token} was created for ${username}.`);
-        myEmitter.emit("log", "tokens.newToken()", "INFO", `New token ${newTokens.token} was created for ${username}.`);
+        console.log(
+          `New token ${newTokens.token} was created for ${username}.`
+        );
+        myEmitter.emit(
+          "log",
+          "tokens.newToken()",
+          "INFO",
+          `New token ${newTokens.token} was created for ${username}.`
+        );
       }
     });
   });
@@ -133,7 +150,12 @@ function updateToken(argv) {
       if (err) console.log(err);
       else {
         console.log(`Token record for ${argv[3]} was updated with ${argv[4]}.`);
-        myEmitter.emit("log", "tokens.updateToken()", "INFO", `Token ${argv[3]} was updated.`);
+        myEmitter.emit(
+          "log",
+          "tokens.updateToken()",
+          "INFO",
+          `Token ${argv[3]} was updated.`
+        );
       }
     });
   });
@@ -147,7 +169,12 @@ function fetchRecord(username) {
     tokens.forEach((obj) => {
       if (obj.username === username) {
         console.log(obj);
-        myEmitter.emit("log", "token.fetchRecord()", "INFO", `Token record for ${username} was displayed.`);
+        myEmitter.emit(
+          "log",
+          "token.fetchRecord()",
+          "INFO",
+          `Token record for ${username} was displayed.`
+        );
       }
     });
   });
@@ -155,7 +182,12 @@ function fetchRecord(username) {
 
 function searchToken() {
   if (DEBUG) console.log("token.searchToken()");
-  myEmitter.emit("log", "token.searchToken()", "INFO", `Token was found for xxx.`);
+  myEmitter.emit(
+    "log",
+    "token.searchToken()",
+    "INFO",
+    `Token was found for xxx.`
+  );
 }
 
 function addDays(date, days) {
@@ -166,7 +198,12 @@ function addDays(date, days) {
 
 function tokenApp() {
   if (DEBUG) console.log("tokenApp()");
-  myEmitter.emit("log", "token.tokenApp()", "INFO", `Token option was called by CLI.`);
+  myEmitter.emit(
+    "log",
+    "token.tokenApp()",
+    "INFO",
+    `Token option was called by CLI.`
+  );
 
   switch (myArgs[1]) {
     case "--count":
@@ -194,7 +231,12 @@ function tokenApp() {
         if (error) throw error;
         console.log(data.toString());
       });
-      myEmitter.emit("log", "token.tokenApp()", "INFO", `Token help was displayed.`);
+      myEmitter.emit(
+        "log",
+        "token.tokenApp()",
+        "INFO",
+        `Token help was displayed.`
+      );
   }
 }
 

@@ -4,9 +4,8 @@ global.DEBUG = true;
 
 const fs = require("fs");
 const path = require("path");
-const { config } = require("./init");
-const fileName = "./config.json";
-const file = require(fileName);
+const { configTemp } = require("./init");
+const fileName = "/config.json";
 
 // switch statement to help with config options
 const myArgs = process.argv.slice(2);
@@ -18,7 +17,7 @@ function configApp() {
       configReset();
       break;
     case "--set":
-      if (DEBUG) console.log("The Config.JSON has been updated.");
+      if (DEBUG) console.log("Config.JSON has been updated.");
       configSet();
       break;
     case "--show":
@@ -29,7 +28,7 @@ function configApp() {
 
 // resets the config.json file to its original state.
 function configReset() {
-  let figdata = JSON.stringify(config, null, 2);
+  let figdata = JSON.stringify(configTemp, null, 2);
   fs.writeFile(__dirname + "/config.json", figdata, (err) => {
     if (err) throw err;
     if (DEBUG) console.log("Config.JSON reset to default.");
