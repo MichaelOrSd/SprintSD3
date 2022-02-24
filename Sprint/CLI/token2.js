@@ -53,3 +53,20 @@ function tokenCount() {
     myEmitter.emit("log", "tokens.tokenCount()", "INFO", `Current toekn count is ${cnt}.`);
   });
 }
+
+function tokenList() {
+  if (DEBUG) console.log("token.tokenCount()");
+  fs.readFile(__dirname, +"./jason/tokens.json", "utf-8", (error, data) => {
+    if (error) throw error;
+    let tokens = JSON.parse(data);
+    console.log("** User List **");
+    tokens.forEach((obj) => {
+      console.log(" * " + obj.username + ": " + obj.token);
+    });
+    myEmitter.emit("log", "tokens.tokenList()", "INFO", `Current token list was displayed.`);
+  });
+}
+
+function newToken(username) {
+  if (DEBUG) console.log("token.newToken()");
+}
