@@ -9,23 +9,23 @@ const fileName = "./config.json";
 const file = require(fileName);
 
 // switch statement to help with config options
-function configApp() {
 const myArgs = process.argv.slice(2);
-if (DEBUG) if (myArgs.length > 1) console.log("the myapp.args: ", myArgs);
-switch (myArgs[1]) {
-  case "--reset":
-    if (DEBUG) console.log("Config.JSON has been reset.");
-    configReset();
-    break;
-  case "--set":
-    if (DEBUG) console.log("The Config.JSON has been updated.");
-    configSet();
-    break;
-  case "--show":
-  default:
-    configShow();
+function configApp() {
+  if (DEBUG) if (myArgs.length > 1) console.log("the myapp.args: ", myArgs);
+  switch (myArgs[1]) {
+    case "--reset":
+      if (DEBUG) console.log("Config.JSON has been reset.");
+      configReset();
+      break;
+    case "--set":
+      if (DEBUG) console.log("The Config.JSON has been updated.");
+      configSet();
+      break;
+    case "--show":
+    default:
+      configShow();
+  }
 }
-// }
 
 // resets the config.json file to its original state.
 function configReset() {
@@ -37,9 +37,7 @@ function configReset() {
 }
 
 // updates whichever piece of data is in the config.json file you indicate.
-// const myArgs = process.argv.slice(2); // *** may need to be deleted ***
 function configSet() {
-  let match = false;
   fs.readFile(__dirname + "/config.json", (err, data) => {
     if (err) throw err;
     if (DEBUG) console.log(JSON.parse(data));
@@ -47,7 +45,6 @@ function configSet() {
     for (let key of Object.keys(configKey)) {
       if (key === myArgs[2]) {
         configKey[key] = myArgs[3];
-        match = true;
       }
     }
     if (DEBUG) console.log(configKey);
