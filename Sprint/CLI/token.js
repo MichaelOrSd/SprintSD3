@@ -56,7 +56,7 @@ function tokenCount() {
 
 function tokenList() {
   if (DEBUG) console.log("token.tokenCount()");
-  fs.readFile(__dirname, +"./tokens.json", "utf-8", (error, data) => {
+  fs.readFile(__dirname, +"/tokens.json", "utf-8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     console.log("** User List **");
