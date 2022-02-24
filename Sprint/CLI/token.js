@@ -88,17 +88,17 @@ function newToken(username) {
   newToken.token = crc32(username).toString(16);
   newToken.expires = `${format(expires, "yyyy-MM-dd HH:mm:ss")}`;
 
-  fs.readFile(__dirname + "./tokens.json", "utf8", (error, data) => {
+  fs.readFile(__dirname + "/tokens.json", "utf8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     tokens.push(newToken);
     userTokens = JSON.stringify(tokens);
 
-    fs.writeFile(__dirname + "./tokens.json", userTokens, (err) => {
+    fs.writeFile(__dirname + "/tokens.json", userTokens, (err) => {
       if (err) console.log(err);
       else {
         console.log(`New token ${newTokens.token} was created for ${username}.`);
-        myEmitter.emit("log", "tokens.newToken()", "INFO", `New token ${newTokens.token} was created for ${username}.`);
+        myEmitter.emit("log", "token.newToken()", "INFO", `New token ${newToken.token} was created for ${username}.`);
       }
     });
   });
