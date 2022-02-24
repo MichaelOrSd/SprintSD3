@@ -69,7 +69,7 @@ function tokenList() {
       console.log(" * " + obj.username + ": " + obj.token);
     });
 <<<<<<< HEAD
-    myEmitter.emit( "log","tokens.tokenList()","INFO",`Current token list was displayed.`);
+    myEmitter.emit("log", "tokens.tokenList()","INFO", `Current token list was displayed.`);
 =======
     myEmitter.emit("log", "token.tokenList()", "INFO", `Current token list was displayed.`);
 >>>>>>> 792d67038b3b8accade43ec9a97bad69613ef6c8
