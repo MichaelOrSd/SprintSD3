@@ -9,8 +9,8 @@ myapp init <command>
 
 Usage:
 
-init --all          creates the folder structure and config file
-init --mk           creates the folder structure
+init --all          creates the folder structure and run again to create init.txt file
+init --mk           creates the views folder structure
 init --cat          creates the config file with default settings`;
 
 function initializeApp() {
