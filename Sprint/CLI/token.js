@@ -30,7 +30,7 @@ const EventEmitter = require("events");
 class MyEmitter extends EventEmitter {}
 
 // init a new emitter obj
-const myEmitter = new EventEmitter();
+const myEmitter = new myEmitter();
 // add the listener for the logEvents module
 myEmitter.on("log", (event, level, msg) => logEvents(event, level, msg));
 
