@@ -97,7 +97,7 @@ function newToken(username) {
     fs.writeFile(__dirname + "/tokens.json", userTokens, (err) => {
       if (err) console.log(err);
       else {
-        console.log(`New token ${newTokens.token} was created for ${username}.`);
+        console.log(`New token ${newToken.token} was created for ${username}.`);
         myEmitter.emit("log", "token.newToken()", "INFO", `New token ${newToken.token} was created for ${username}.`);
       }
     });
