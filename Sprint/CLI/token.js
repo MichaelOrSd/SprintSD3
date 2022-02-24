@@ -41,7 +41,7 @@ const path = require("path");
 const crc32 = require("crc/crc32"); // 402 (gzipped: 261)
 const { format } = require("date-fns"); // 402 (gzipped: 261)
 
-const myArgs = precoesss.argv.slice(2);
+const myArgs = process.argv.slice(2);
 
 function tokenCount() {
   if (DEBUG) console.log("tokenCount()");
