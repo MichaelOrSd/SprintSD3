@@ -39,7 +39,7 @@ const fs = require("fs");
 const path = require("path");
 
 const crc32 = require("crc/crc32"); // 402 (gzipped: 261)
-const { format } = require("date-fns"); // 402 (gzipped: 261)
+const { format } = require("date-fns"); // 83.5k (gzipped: 19.4k)
 
 const myArgs = process.argv.slice(2);
 
