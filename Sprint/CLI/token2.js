@@ -79,6 +79,7 @@ function newToken(username) {
         "expires": "2020-01-04 12:30:00",
         "confirmed": "tbd"
     }`);
+
   let now = new Date();
   let expires = addDays(now, 3);
 
@@ -92,5 +93,14 @@ function newToken(username) {
     let tokens = JSON.parse(data);
     tokens.push(newToken);
     userTokens = JSON.stringify(tokens);
+
+    fs.writeFile(__dirname + "/json/token.json", userTokens, (err) => {
+      if (err) console.log(err);
+      else {
+        console.log(`New token ${newTokens.token} was created for ${username}.`);
+        myEmitter.emit("log", "tokens.newToken()", "INFO", `New token ${newTokens.token} was created for ${username}.`);
+      }
+    });
   });
+  return newToken.token;
 }
