@@ -129,11 +129,11 @@ function updateToken(argv) {
       }
     });
     userTokens = JSON.stringify(tokens);
-    fs.watchFile(__dirname + "./tokens.json", userTokens, (err) => {
+    fs.watchFile(__dirname + "/tokens.json", userTokens, (err) => {
       if (err) console.log(err);
       else {
         console.log(`Token record for ${argv[3]} was updated with ${argv[4]}.`);
-        myEmitter.emit("log", "tokens.updateToken()", "INFO", `Token ${argv[3]} was updated.`);
+        myEmitter.emit("log", "token.updateToken()", "INFO", `Token ${argv[3]} was updated.`);
       }
     });
   });
@@ -141,7 +141,7 @@ function updateToken(argv) {
 
 function fetchRecord(username) {
   if (DEBUG) console.log("token.fetchRecord()");
-  fs.readFile(__dirname + "./tokens.json", "utf8", (error, data) => {
+  fs.readFile(__dirname + "/tokens.json", "utf8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     tokens.forEach((obj) => {
