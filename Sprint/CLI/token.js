@@ -30,7 +30,7 @@ const EventEmitter = require("events");
 class MyEmitter extends EventEmitter {}
 
 // init a new emitter obj
-const myEmitter = new EventEmitter();
+const myEmitter = new MyEmitter();
 // add the listener for the logEvents module
 myEmitter.on("log", (event, level, msg) => logEvents(event, level, msg));
 
@@ -39,13 +39,13 @@ const fs = require("fs");
 const path = require("path");
 
 const crc32 = require("crc/crc32"); // 402 (gzipped: 261)
-const { format } = require("date-fns"); // 402 (gzipped: 261)
+const { format } = require("date-fns"); // 83.5k (gzipped: 19.4k)
 
 const myArgs = process.argv.slice(2);
 
 function tokenCount() {
   if (DEBUG) console.log("token.tokenCount()");
-  fs.readFile(__dirname, +"./tokens.json", "utf-8", (error, data) => {
+  fs.readFile(__dirname, +"/tokens.json", "utf-8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     let cnt = Object.keys(tokens).length;
@@ -61,19 +61,18 @@ function tokenCount() {
 
 function tokenList() {
   if (DEBUG) console.log("token.tokenCount()");
-  fs.readFile(__dirname, +"./tokens.json", "utf-8", (error, data) => {
+  fs.readFile(__dirname, +"/tokens.json", "utf-8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     console.log("** User List **");
     tokens.forEach((obj) => {
       console.log(" * " + obj.username + ": " + obj.token);
     });
-    myEmitter.emit(
-      "log",
-      "tokens.tokenList()",
-      "INFO",
-      `Current token list was displayed.`
-    );
+<<<<<<< HEAD
+    myEmitter.emit( "log","tokens.tokenList()","INFO",`Current token list was displayed.`);
+=======
+    myEmitter.emit("log", "token.tokenList()", "INFO", `Current token list was displayed.`);
+>>>>>>> 792d67038b3b8accade43ec9a97bad69613ef6c8
   });
 }
 
@@ -98,24 +97,22 @@ function newToken(username) {
   newToken.token = crc32(username).toString(16);
   newToken.expires = `${format(expires, "yyyy-MM-dd HH:mm:ss")}`;
 
-  fs.readFile(__dirname + "./tokens.json", "utf8", (error, data) => {
+  fs.readFile(__dirname + "/tokens.json", "utf8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
     tokens.push(newToken);
     userTokens = JSON.stringify(tokens);
 
-    fs.writeFile(__dirname + "./tokens.json", userTokens, (err) => {
+    fs.writeFile(__dirname + "/tokens.json", userTokens, (err) => {
       if (err) console.log(err);
       else {
-        console.log(
-          `New token ${newTokens.token} was created for ${username}.`
-        );
-        myEmitter.emit(
-          "log",
-          "tokens.newToken()",
-          "INFO",
-          `New token ${newToken.token} was created for ${username}.`
-        );
+<<<<<<< HEAD
+        console.log(`New token ${newTokens.token} was created for ${username}.`);
+        myEmitter.emit("log","tokens.newToken()","INFO",`New token ${newToken.token} was created for ${username}.`);
+=======
+        console.log(`New token ${newTokens.token} was created for ${username}.`);
+        myEmitter.emit("log", "token.newToken()", "INFO", `New token ${newToken.token} was created for ${username}.`);
+>>>>>>> 792d67038b3b8accade43ec9a97bad69613ef6c8
       }
     });
   });
