@@ -23,7 +23,7 @@ some text here to keep code line in place
 
 // add logging to the CLI
 //load the logEvents module
-// const logEvents = require("./logEvents");
+const logEvents = require("./logEvents");
 
 // define/extend an EventEmitter class
 const EventEmitter = require("events");
