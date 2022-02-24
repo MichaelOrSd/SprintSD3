@@ -24,7 +24,8 @@ Revisions:
 date, Author, description; 
 1. 21 Feb 2022 by Michael O'Reilly
    The first revision description should go here.
-2. 
+2. 22 Feb 2022 by Roderick Wells
+3. 23 Feb 2022 by Michael O'Reilly
 
 
 */
@@ -36,6 +37,7 @@ global.DEBUG = true;
 const fs = require("fs");
 const { initializeApp } = require("./init.js");
 const { configApp } = require("./config.js");
+const { tokenApp } = require("./token.js");
 
 const myArgs = process.argv.slice(2);
 if (DEBUG) if (myArgs.length > 1) console.log("the myapp.args: ", myArgs);
@@ -54,7 +56,7 @@ switch (myArgs[0]) {
   case "token":
   case "t":
     if (DEBUG) console.log(myArgs[0], " - generate a user token.");
-    //tokenApp();
+    tokenApp();
     break;
   case "help":
   case "h":
