@@ -4,11 +4,11 @@
 
 
 
-app token --count
-app token --list
-app token --new
-app token --update p or e <username> <phone or email>
-app token --fetch <username>
+app token --count                                         counts all the tokens and displays the count.
+app token --list                                          lists all the tokens.
+app token --new <username>                                create new token for user.
+app token --update p or e <username> <phone or email>     updates the phone or email for the user.
+app token --fetch <username>                              fetches the token record for the user.
 app token --search u <username>
 app token --search e <email>
 app token --search p <phone>
