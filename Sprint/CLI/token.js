@@ -63,7 +63,7 @@ function tokenList() {
     tokens.forEach((obj) => {
       console.log(" * " + obj.username + ": " + obj.token);
     });
-    myEmitter.emit("log", "tokens.tokenList()", "INFO", `Current token list was displayed.`);
+    myEmitter.emit("log", "token.tokenList()", "INFO", `Current token list was displayed.`);
   });
 }
 
