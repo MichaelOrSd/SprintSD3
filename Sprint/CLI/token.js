@@ -80,7 +80,7 @@ function tokenList() {
 function newToken(username) {
   if (DEBUG) console.log("token.newToken()");
 
-  let enwToken = JSON.parse(`{
+  let newToken = JSON.parse(`{
         "created": "2020-01-01 12:30:00",
         "username": "username",
         "email": "user@example.com",
