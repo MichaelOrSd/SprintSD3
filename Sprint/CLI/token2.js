@@ -69,4 +69,28 @@ function tokenList() {
 
 function newToken(username) {
   if (DEBUG) console.log("token.newToken()");
+
+  let enwToken = JSON.parse(`{
+        "created": "2020-01-01 12:30:00",
+        "username": "username",
+        "email": "user@example.com",
+        "phone": "555-555-5555",
+        "token": "token",
+        "expires": "2020-01-04 12:30:00",
+        "confirmed": "tbd"
+    }`);
+  let now = new Date();
+  let expires = addDays(now, 3);
+
+  newToken.created = `${format(now, "yyyy-MM-dd HH:mm:ss")}`;
+  newToken.username = username;
+  newToken.token = crc32(username).toString(16);
+  newToken.expires = `${format(expires, "yyyy-MM-dd HH:mm:ss")}`;
+
+  fs.readFile(__dirname + "/json/token.json", "utf8", (error, data) => {
+    if (error) throw error;
+    let tokens = JSON.parse(data);
+    tokens.push(newToken);
+    userTokens = JSON.stringify(tokens);
+  });
 }
