@@ -106,34 +106,99 @@ function newToken(username) {
 }
 
 function updateToken(argv) {
-    if(DEBUG) console.log('token.updateToken()');
-    if(DEBUG) console.log(argv);
-    fs.readFile(__dirname + '/json/tokens.json', 'utf8', (error, data) => {
-        if(error) throw error;
-        let tokens = JSON.parse(data);
-        tokens.forEach((obj) => {
-            if(obj.username === argv[3]) {
-                if(DEBUG) console.log(obj);
-                switch(argv[2]) {
-                    case 'p':
-                    case 'P':
-                        obj.phone = argv[4];
-                        break;
-                    case 'e':
-                    case 'E':
-                        obj.email = argv[4];
-                        break;
-                    default:
-                }
-                if(DEBUG) console.log(obj);
-            }
-        ));
-        userTokens = JSON.stringify(tokens);
-        fs.watchFile(__dirname + '/json/tokens.json', userTokens, (err) => {
-            if(err) console.log(err);
-            else {
-                console.log(`Token record for ${argv[3]} was updated with ${argv[4]}.`);
-                myEmitter.emit('log', 'tokens.updateToken()', 'INFO', `Token ${argv[3]} was updated.`);
-            }
-        })
+  if (DEBUG) console.log("token.updateToken()");
+  if (DEBUG) console.log(argv);
+  fs.readFile(__dirname + "/json/tokens.json", "utf8", (error, data) => {
+    if (error) throw error;
+    let tokens = JSON.parse(data);
+    tokens.forEach((obj) => {
+      if (obj.username === argv[3]) {
+        if (DEBUG) console.log(obj);
+        switch (argv[2]) {
+          case "p":
+          case "P":
+            obj.phone = argv[4];
+            break;
+          case "e":
+          case "E":
+            obj.email = argv[4];
+            break;
+          default:
+        }
+        if (DEBUG) console.log(obj);
+      }
+    });
+    userTokens = JSON.stringify(tokens);
+    fs.watchFile(__dirname + "/json/tokens.json", userTokens, (err) => {
+      if (err) console.log(err);
+      else {
+        console.log(`Token record for ${argv[3]} was updated with ${argv[4]}.`);
+        myEmitter.emit("log", "tokens.updateToken()", "INFO", `Token ${argv[3]} was updated.`);
+      }
+    });
+  });
 }
+
+function fetchRecord(username) {
+  if (DEBUG) console.log("token.fetchRecord()");
+  fs.readFile(__dirname + "/json/token.json", "utf8", (error, data) => {
+    if (error) throw error;
+    let tokens = JSON.parse(data);
+    tokens.forEach((obj) => {
+      if (obj.username === username) {
+        console.log(obj);
+        myEmitter.emit("log", "token.fetchRecord()", "INFO", `Token record for ${username} was displayed.`);
+      }
+    });
+  });
+}
+
+function searchToken() {
+  if (DEBUG) console.log("token.searchToken()");
+  myEmitter.emit("log", "token.searchToken()", "INFO", `Token was found for xxx.`);
+}
+
+function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
+function tokenApp() {
+  if (DEBUG) console.log("tokenApp()");
+  myEmitter.emit("log", "token.tokenApp()", "INFO", `Token option was called by CLI.`);
+
+  switch (myArgs[1]) {
+    case "--count":
+      tokenCount();
+      break;
+    case "--list":
+      tokenList();
+      break;
+    case "--new":
+      newToken(myArgs[2]);
+      break;
+    case "--update":
+      updateToken(myArgs); // may need to be [2] after myArgs.
+      break;
+    case "--fetch":
+      fetchRecord(myArgs[2]);
+      break;
+    case "--search":
+      searchToken();
+      break;
+    case "--help":
+    case "--h":
+    default:
+      fs.readFile(__dirname + "/views/token.txt", (error, data) => {
+        if (error) throw error;
+        console.log(data.toString());
+      });
+      myEmitter.emit("log", "token.tokenApp()", "INFO", `Token help was displayed.`);
+  }
+}
+
+module.exports = {
+  tokenApp,
+  newToken,
+};
