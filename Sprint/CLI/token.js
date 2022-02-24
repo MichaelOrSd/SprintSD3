@@ -4,14 +4,13 @@
 
 
 
-app token --count                                         counts all the tokens and displays the count.
-app token --list                                          lists all the tokens.
-app token --new <username>                                create new token for user.
-app token --update p or e <username> <phone or email>     updates the phone or email for the user.
-app token --fetch <username>                              fetches the token record for the user.
-app token --search u <username>
-app token --search e <email>
-app token --search p <phone>
+app token count                                         counts all the tokens and displays the count.
+app token list                                          lists all the tokens.
+app token new <username>                                create new token for user.
+app token update p or e <username> <phone or email>     updates the phone or email for the user.
+app token fetch <username>                              fetches the token record for the user.
+app token search <username>                             searches for the log token record for the user.
+
 
 
 
@@ -155,7 +154,7 @@ function fetchRecord(username) {
 
 function searchToken() {
   if (DEBUG) console.log("token.searchToken()");
-  myEmitter.emit("log", "token.searchToken()", "INFO", `Token was found for xxx.`);
+  myEmitter.emit("log", "token.searchToken()", "INFO", `Token was found.`);
 }
 
 function addDays(date, days) {
@@ -169,26 +168,26 @@ function tokenApp() {
   myEmitter.emit("log", "token.tokenApp()", "INFO", `Token option was called by CLI.`);
 
   switch (myArgs[1]) {
-    case "--count":
+    case "count":
       tokenCount();
       break;
-    case "--list":
+    case "list":
       tokenList();
       break;
-    case "--new":
+    case "new":
       newToken(myArgs[2]);
       break;
-    case "--update":
+    case "update":
       updateToken(myArgs); // may need to be [2] after myArgs.
       break;
-    case "--fetch":
+    case "fetch":
       fetchRecord(myArgs[2]);
       break;
-    case "--search":
+    case "search":
       searchToken();
       break;
-    case "--help":
-    case "--h":
+    case "help":
+    case "h":
     default:
       fs.readFile(__dirname + "/views/token.txt", (error, data) => {
         if (error) throw error;
