@@ -89,3 +89,11 @@
 20220224	21:12:57	INFO	token.newToken()	New token b4ed88e8 was created for Mike.	4e19b851-3330-4b4b-adae-c7fb51b65341
 20220224	21:13:02	INFO	token.newToken()	New token b4ed88e8 was created for Mike.	164cf408-a5f2-457f-9e9f-63073f1e2a8e
 20220224	21:13:21	INFO	token.newToken()	New token d240e7a4 was created for Billyjean.	6da70525-16b1-49a0-82ef-fa6786a713df
+20220224	22:12:28	INFO	token.tokenApp()	Token option was called by CLI.	bf445f6a-a065-4647-bd39-b6addf48163c
+20220224	22:12:28	INFO	token.tokenCount()	Current token count is 11.	420696af-b2c6-47c6-b5d5-ac00d7e2cb49
+20220224	22:12:42	INFO	token.tokenApp()	Token option was called by CLI.	71d204f1-45ef-44b4-9182-64b5a80bcd4b
+20220224	22:12:42	INFO	token.searchToken()	Token was found.	cf084883-8e3b-4adf-892c-29dc24d0a693
+20220224	22:13:00	INFO	token.tokenApp()	Token option was called by CLI.	2647ca26-119a-4e57-9a01-633cc8f26eaf
+20220224	22:13:00	INFO	token.searchToken()	Token was found.	7033f7b5-2bf9-4f14-a44d-8ca27d6652a3
+20220224	22:13:32	INFO	token.tokenApp()	Token option was called by CLI.	44404480-36a3-466a-a0e5-759e3241330b
+20220224	22:13:32	INFO	token.tokenApp()	Token help was displayed.	4310c1ca-ff41-4cde-b7d3-087c4a1ff2b0

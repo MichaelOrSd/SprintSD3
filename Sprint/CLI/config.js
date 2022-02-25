@@ -1,5 +1,3 @@
-// code to turn on or off the console.log statements
-// set to true to turn on, false to turn off
 global.DEBUG = true;
 
 const fs = require("fs");
@@ -12,15 +10,15 @@ const myArgs = process.argv.slice(2);
 function configApp() {
   if (DEBUG) if (myArgs.length > 1) console.log("the myapp.args: ", myArgs);
   switch (myArgs[1]) {
-    case "--reset":
+    case "reset":
       if (DEBUG) console.log("Config.JSON has been reset.");
       configReset();
       break;
-    case "--set":
+    case "set":
       if (DEBUG) console.log("Config.JSON has been updated.");
       configSet();
       break;
-    case "--show":
+    case "show":
     default:
       configShow();
   }

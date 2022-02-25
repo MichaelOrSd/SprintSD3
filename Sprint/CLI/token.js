@@ -1,30 +1,21 @@
 /*
 
-
-
-
-
-app token count                                         counts all the tokens and displays the count.
-app token list                                          lists all the tokens.
-app token new <username>                                create new token for user.
-app token update p or e <username> <phone or email>     updates the phone or email for the user.
-app token fetch <username>                              fetches the token record for the user.
-app token search <username>                             searches for the log token record for the user.
-
-
-
-
-
-
-
+app token count                                                 counts all the tokens and displays the count.
+app token list                                                  lists all the tokens.
+app token new <username>                                        create new token for user.
+app token update phone or email <username> <phone or email>     updates the phone or email for the user.
+app token fetch <username>                                      fetches the token record for the user.
+app token search <username>                                     searches for the log token record for the user.
 
 */
+
+// global debugger
 global.DEBUG = true;
 // add logging to the CLI
 //load the logEvents module
 const logEvents = require("./logEvents");
 
-// define/extend an EventEmitter class
+// define the EventEmitter class
 const EventEmitter = require("events");
 class MyEmitter extends EventEmitter {}
 
@@ -33,12 +24,12 @@ const myEmitter = new MyEmitter();
 // add the listener for the logEvents module
 myEmitter.on("log", (event, level, msg) => logEvents(event, level, msg));
 
-//node.js common core gobal modules
+//node.js common core modules
 const fs = require("fs");
 const path = require("path");
 
-const crc32 = require("crc/crc32"); // 402 (gzipped: 261)
-const { format } = require("date-fns"); // 83.5k (gzipped: 19.4k)
+const crc32 = require("crc/crc32");
+const { format } = require("date-fns");
 
 const myArgs = process.argv.slice(2);
 
@@ -47,9 +38,9 @@ function tokenCount() {
   fs.readFile(__dirname + "/tokens.json", "utf-8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
-    let cnt = Object.keys(tokens).length;
-    console.log(`Current token count is ${cnt}.`);
-    myEmitter.emit("log", "token.tokenCount()", "INFO", `Current token count is ${cnt}.`);
+    let count = Object.keys(tokens).length;
+    console.log(`Current token count is ${count}.`);
+    myEmitter.emit("log", "token.tokenCount()", "INFO", `Current token count is ${count}.`);
   });
 }
 
@@ -58,9 +49,9 @@ function tokenList() {
   fs.readFile(__dirname + "/tokens.json", "utf-8", (error, data) => {
     if (error) throw error;
     let tokens = JSON.parse(data);
-    console.log("** User List **");
+    console.log("User List of tokens");
     tokens.forEach((obj) => {
-      console.log(" * " + obj.username + ": " + obj.token);
+      console.log(obj.username + ": " + obj.token);
     });
     myEmitter.emit("log", "token.tokenList()", "INFO", `Current token list was displayed.`);
   });
@@ -73,7 +64,7 @@ function newToken(username) {
         "created": "2020-01-01 12:30:00",
         "username": "username",
         "email": "user@example.com",
-        "phone": "555-555-5555",
+        "phone": "709-123-4567",
         "token": "token",
         "expires": "2020-01-04 12:30:00",
         "confirmed": "tbd"
@@ -96,8 +87,8 @@ function newToken(username) {
     fs.writeFile(__dirname + "/tokens.json", userTokens, (err) => {
       if (err) console.log(err);
       else {
-        console.log(`New token ${newToken.token} was created for ${username}.`);
-        myEmitter.emit("log", "token.newToken()", "INFO", `New token ${newToken.token} was created for ${username}.`);
+        console.log(`A new token ${newToken.token} was created for ${username}.`);
+        myEmitter.emit("log", "token.newToken()", "INFO", `A new token ${newToken.token} was created for ${username}.`);
       }
     });
   });
@@ -114,12 +105,10 @@ function updateToken(argv) {
       if (obj.username === argv[3]) {
         if (DEBUG) console.log(obj);
         switch (argv[2]) {
-          case "p":
-          case "P":
+          case "phone":
             obj.phone = argv[4];
             break;
-          case "e":
-          case "E":
+          case "email":
             obj.email = argv[4];
             break;
           default:
@@ -153,7 +142,7 @@ function fetchRecord(username) {
 }
 
 function searchToken() {
-  // suppose to be the Doubly linked list search.
+  // Doubly linked list search.
   class Data {
     constructor(created, username, email, phone, token, expires, confirmed) {
       this.created = created;

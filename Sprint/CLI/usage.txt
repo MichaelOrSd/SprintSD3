@@ -1,16 +1,17 @@
-myapp init <command>
+app <command>
 
 Usage:
 
-app init --all.....               creates the folder structure and config files for the
-app init --mk......               creates the folder structure and config files for
-app init --cat.....               creates the config file with default settings
-app config --show..               displays a list of the current config settings
-app config --reset.               resets the config file with default settings
-app config --set...               sets a sspecific config settings
-app token --count..               displays a count of the token created
-app token --new <username>        generates a token for a given username, saves tokens to the json file 
-app token --fetch <username>      fetches a token for a given username
-app token --search u <username>
-app token --search e <email>
-app token --search p <phone> 
+app init all                                                    creates the folder structure and config files for the
+app init make                                                   creates the folder structure and config files for
+app init cat                                                    creates the config file with default settings
+app config show                                                 displays a list of the current config settings
+app config reset                                                resets the config file with default settings
+app config set                                                  sets a sspecific config settings
+app token count                                                 displays a count of the token created
+app token list                                                  displays a list of the current tokens
+app token new <username>                                        generates a token for a given username, saves tokens to the json file 
+app token update phone or email <username> <phone or email>     updates the phone or email for the user
+app token fetch <username>                                      fetches a token for a given username
+app token search <username>
+app help                                                        displays a list of the available commands

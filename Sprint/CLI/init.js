@@ -5,29 +5,29 @@ const fs = require("fs");
 const path = require("path");
 
 let init = `
-myapp init <command>
+app init <command>
 
 Usage:
 
-init --all          creates the folder structure and run again to create init.txt file
-init --mk           creates the views folder structure
-init --cat          creates the config file with default settings`;
+init all            creates the folder structure and run again to create init.txt file
+init make           creates the views folder structure
+init cat            creates the config file with default settings`;
 
 function initializeApp() {
   const myArgs = process.argv.slice(2);
 
   switch (myArgs[1]) {
-    case "--all":
+    case "all":
       createFolder();
-      if (DEBUG) console.log("initializeApp.All() --all");
+      if (DEBUG) console.log("initializeApp.All() all");
       break;
-    case "--mk":
+    case "make":
       createFolder(); // makes the views folder
-      if (DEBUG) console.log("initializeApp.All() --mk");
+      if (DEBUG) console.log("initializeApp.All() make");
       break;
-    case "--cat":
+    case "cat":
       createFile(); // creates the config.json file
-      if (DEBUG) console.log("initializeApp.createFile() --cat");
+      if (DEBUG) console.log("initializeApp.createFile() cat");
       console.log("config ran");
       break;
     default:
