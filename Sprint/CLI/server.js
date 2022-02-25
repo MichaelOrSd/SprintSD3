@@ -1,4 +1,4 @@
-gobal.DEBUGB = true;
+// gobal.DEBUGB = true;
 const http = require("http");
 const { parse } = require("querystring");
 const { newToken } = require("./token");
@@ -15,11 +15,11 @@ const server = http.createServer((req, res) => {
         <html>
         <body>
             <form action="/" method="post">
-                <input type="text" name="username" placeholder="username">
-                <button type="submit">Submit</button>
+                <input type="text" name="username" placeholder="username"><br/>
+                <button>Submit</button>
             </form>
-            </body>
-            </html>
+        </body>
+        </html>
         `);
   }
 });
@@ -27,8 +27,8 @@ const server = http.createServer((req, res) => {
 server.listen(3000);
 
 function collectRequestData(request, callback) {
-  const FROM_URLENCODED = "application/x-www-form-urlencoded";
-  if (request.headers["content-type"] === FROM_URLENCODED) {
+  const FORM_URLENCODED = "application/x-www-form-urlencoded";
+  if (request.headers["content-type"] === FORM_URLENCODED) {
     let body = "";
     request.on("data", (chunk) => {
       body += chunk.toString();
