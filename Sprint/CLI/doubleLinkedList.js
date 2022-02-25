@@ -1,5 +1,12 @@
+// .sort method the list of json data to allow for better human searching.
+// this is what a good programmer would do to aid future programmers
+// .sort((a, b) => a.username.localeCompare(b.username));
+// Got the idea from Stephan Squires which show just how much or a good coder/programmer he really is.
+// He's litterally thinking far beyond the level of this class.
+
 // input json data objs DLL
 // write fns to allow us to call this DLL.js file
+// insert fns
 
 // Doubly linked list search.
 
@@ -63,29 +70,27 @@ class DoublyLinkedList {
     }
     return tokenData;
   }
-  main(){//reads input from command line and parses it t search for item
-    const readline = require('readline');
+  main() {
+    //reads input from command line and parses it t search for item
+    const readline = require("readline");
     var r1 = readline.createInterface({
-        input:process.stdin,
-        output:process.stdout
-
+      input: process.stdin,
+      output: process.stdout,
     });
-    r1.on('line',function(line){
-        itemTosearch = line;
-        while(!itemTosearch.equals("q")){
-            sortedSet = this.searchItem(itemTosearch)
-            if(sortedSet.size() != 0){
-                for (i = o; i <= sortedSet.size(); i++){
-                    //console.log(sortedSet)
-                }
-            }
-        else{
-            console.log("No search results found...");
+    r1.on("line", function (line) {
+      itemTosearch = line;
+      while (!itemTosearch.equals("q")) {
+        sortedSet = this.searchItem(itemTosearch);
+        if (sortedSet.size() != 0) {
+          for (i = o; i <= sortedSet.size(); i++) {
+            //console.log(sortedSet)
+          }
+        } else {
+          console.log("No search results found...");
         }
         console.log("\nEnter search item(or q to quit:");
-        }
-    r1.close
-    })
-}
-
+      }
+      r1.close;
+    });
+  }
 }
