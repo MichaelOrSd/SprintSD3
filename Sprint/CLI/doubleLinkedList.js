@@ -63,4 +63,29 @@ class DoublyLinkedList {
     }
     return tokenData;
   }
+  main(){//reads input from command line and parses it t search for item
+    const readline = require('readline');
+    var r1 = readline.createInterface({
+        input:process.stdin,
+        output:process.stdout
+
+    });
+    r1.on('line',function(line){
+        itemTosearch = line;
+        while(!itemTosearch.equals("q")){
+            sortedSet = this.searchItem(itemTosearch)
+            if(sortedSet.size() != 0){
+                for (i = o; i <= sortedSet.size(); i++){
+                    //console.log(sortedSet)
+                }
+            }
+        else{
+            console.log("No search results found...");
+        }
+        console.log("\nEnter search item(or q to quit:");
+        }
+    r1.close
+    })
+}
+
 }
