@@ -86,3 +86,6 @@
 20220224	19:37:23	INFO	token.searchToken()	Token was found.	bbc764ff-8cfb-4f63-80c7-0841704ea246
 20220224	19:39:44	INFO	token.tokenApp()	Token option was called by CLI.	e23721b2-3375-4275-8193-c25dbe7b7c65
 20220224	19:39:44	INFO	token.searchToken()	Token was found.	6237abea-6b91-4a4b-bbc8-fef0cd903d34
+20220224	21:12:57	INFO	token.newToken()	New token b4ed88e8 was created for Mike.	4e19b851-3330-4b4b-adae-c7fb51b65341
+20220224	21:13:02	INFO	token.newToken()	New token b4ed88e8 was created for Mike.	164cf408-a5f2-457f-9e9f-63073f1e2a8e
+20220224	21:13:21	INFO	token.newToken()	New token d240e7a4 was created for Billyjean.	6da70525-16b1-49a0-82ef-fa6786a713df

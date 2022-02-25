@@ -25,6 +25,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(3000);
+console.log("listen on port 3000");
 
 function collectRequestData(request, callback) {
   const FORM_URLENCODED = "application/x-www-form-urlencoded";

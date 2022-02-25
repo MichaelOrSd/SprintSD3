@@ -19,7 +19,7 @@ app token search <username>                             searches for the log tok
 
 
 */
-
+global.DEBUG = true;
 // add logging to the CLI
 //load the logEvents module
 const logEvents = require("./logEvents");
@@ -49,12 +49,7 @@ function tokenCount() {
     let tokens = JSON.parse(data);
     let cnt = Object.keys(tokens).length;
     console.log(`Current token count is ${cnt}.`);
-    myEmitter.emit(
-      "log",
-      "token.tokenCount()",
-      "INFO",
-      `Current token count is ${cnt}.`
-    );
+    myEmitter.emit("log", "token.tokenCount()", "INFO", `Current token count is ${cnt}.`);
   });
 }
 
@@ -67,12 +62,7 @@ function tokenList() {
     tokens.forEach((obj) => {
       console.log(" * " + obj.username + ": " + obj.token);
     });
-    myEmitter.emit(
-      "log",
-      "token.tokenList()",
-      "INFO",
-      `Current token list was displayed.`
-    );
+    myEmitter.emit("log", "token.tokenList()", "INFO", `Current token list was displayed.`);
   });
 }
 
@@ -107,12 +97,7 @@ function newToken(username) {
       if (err) console.log(err);
       else {
         console.log(`New token ${newToken.token} was created for ${username}.`);
-        myEmitter.emit(
-          "log",
-          "token.newToken()",
-          "INFO",
-          `New token ${newToken.token} was created for ${username}.`
-        );
+        myEmitter.emit("log", "token.newToken()", "INFO", `New token ${newToken.token} was created for ${username}.`);
       }
     });
   });
@@ -147,12 +132,7 @@ function updateToken(argv) {
       if (err) console.log(err);
       else {
         console.log(`Token record for ${argv[3]} was updated with ${argv[4]}.`);
-        myEmitter.emit(
-          "log",
-          "token.updateToken()",
-          "INFO",
-          `Token ${argv[3]} was updated.`
-        );
+        myEmitter.emit("log", "token.updateToken()", "INFO", `Token ${argv[3]} was updated.`);
       }
     });
   });
@@ -166,12 +146,7 @@ function fetchRecord(username) {
     tokens.forEach((obj) => {
       if (obj.username === username) {
         console.log(obj);
-        myEmitter.emit(
-          "log",
-          "token.fetchRecord()",
-          "INFO",
-          `Token record for ${username} was displayed.`
-        );
+        myEmitter.emit("log", "token.fetchRecord()", "INFO", `Token record for ${username} was displayed.`);
       }
     });
   });
@@ -249,12 +224,7 @@ function addDays(date, days) {
 
 function tokenApp() {
   if (DEBUG) console.log("tokenApp()");
-  myEmitter.emit(
-    "log",
-    "token.tokenApp()",
-    "INFO",
-    `Token option was called by CLI.`
-  );
+  myEmitter.emit("log", "token.tokenApp()", "INFO", `Token option was called by CLI.`);
 
   switch (myArgs[1]) {
     case "count":
@@ -282,12 +252,7 @@ function tokenApp() {
         if (error) throw error;
         console.log(data.toString());
       });
-      myEmitter.emit(
-        "log",
-        "token.tokenApp()",
-        "INFO",
-        `Token help was displayed.`
-      );
+      myEmitter.emit("log", "token.tokenApp()", "INFO", `Token help was displayed.`);
   }
 }
 
