@@ -1,6 +1,9 @@
+// input json data objs DLL
+// write fns to allow us to call this DLL.js file
+
 // Doubly linked list search.
 
-class Data {
+class Person {
   constructor(created, username, email, phone, token, expires, confirmed) {
     this.created = created;
     this.username = username;
@@ -12,6 +15,7 @@ class Data {
   }
 }
 class Node {
+  // linked list node to hold data, and pointers to next and previous nodes
   constructor(person) {
     this.person = person;
     this.next = null;
@@ -19,6 +23,7 @@ class Node {
   }
 }
 class DoublyLinkedList {
+  // init the DLL
   constructor() {
     this.value = 0;
     this.head = null;
@@ -30,31 +35,32 @@ class DoublyLinkedList {
       current = this.head,
       previous;
     if (!this.head) {
-      this.head = node;
-      this.tail = node;
+      // if list is empty, make the node the head and tail
+      this.head = node; // head and tail are the same
+      this.tail = node; // head and tail are the same
     } else {
-      node.previous = tail;
-      tail.next = node;
-      tail = node;
+      node.previous = tail; // set the new node's previous to the current tail
+      tail.next = node; // head and tail are the same
+      tail = node; // head and tail are the same
     }
     this.value++;
   }
 
   getItemAt(item) {
+    // get the item at the given index
     var tokenData = require("./tokens.json");
-    var data = tokenData;
 
-    let current = this.head;
+    let current = this.head; // start at the head or beginning to search forward
     if (this.head === null) {
       console.log("No Data in List");
       return null;
     }
     while (current != null) {
       if (current.username.includes(item) || current.phone.includes(item)) {
-        data.add(current.Data);
+        tokenData.add(current.Person);
       }
       current = current.next;
     }
-    return data;
+    return tokenData;
   }
 }
