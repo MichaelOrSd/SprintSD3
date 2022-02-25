@@ -10,6 +10,56 @@
 
 // Doubly linked list search.
 
+/*
+
+steps for writing this code:
+
+write and store json data (objects) in a file.
+read and display json data (objects) from a file.
+insert json data (objects) into a file.
+call the function from the app.js file.
+
+insert the data
+write = logg the data to the file.
+
+scarch the data
+read the data
+display the data
+
+*/
+
+
+
+const fs = require("fs");
+const { initializeApp } = require("./init.js");
+const { configApp } = require("./config.js");
+const { tokenApp } = require("./token.js");
+
+
+function insertPerson(obj) {
+  // insert the data
+  // write = logg the data to the file.
+  fs.writeFile(__dirname + "/data.json", JSON.stringify(obj), (error) => {
+    if (error) throw error;
+    console.log("inserted data to the file.");
+  });
+}
+
+module.exports = {
+  initializeApp,
+  configApp,
+  tokenApp,
+
+
+
+
+
+
+
+
+
+
+
 class Person {
   constructor(created, username, email, phone, token, expires, confirmed) {
     this.created = created;
