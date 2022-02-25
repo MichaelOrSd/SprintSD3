@@ -13,9 +13,8 @@ app config --set...            sets a specific config settings
 app token --count..            displays a count of the token created
 app token --new <username>     generates a token for a given username, saves tokens to the json file 
 app token --fetch <username>   fetches a token for a given username
-app token --search u <username>
-app token --search e <email>
-app token --search p <phone> 
+app token --search <username>  searches for a token for a given username
+
 
 created Date: 21 Feb 2022
 Authors: Michael O'Reilly, Roderick Wells
