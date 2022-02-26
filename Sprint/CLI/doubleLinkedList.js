@@ -1,9 +1,3 @@
-// .sort method the list of json data to allow for better human searching.
-// this is what a good programmer would do to aid future programmers
-// .sort((a, b) => a.username.localeCompare(b.username));
-// Got the idea from Stephan Squires which show just how much or a good coder/programmer he really is.
-// He's litterally thinking far beyond the level of this class.
-
 // input json data objs DLL
 // write fns to allow us to call this DLL.js file
 // insert fns
@@ -27,38 +21,6 @@ read the data
 display the data
 
 */
-
-
-
-const fs = require("fs");
-const { initializeApp } = require("./init.js");
-const { configApp } = require("./config.js");
-const { tokenApp } = require("./token.js");
-
-
-function insertPerson(obj) {
-  // insert the data
-  // write = logg the data to the file.
-  fs.writeFile(__dirname + "/data.json", JSON.stringify(obj), (error) => {
-    if (error) throw error;
-    console.log("inserted data to the file.");
-  });
-}
-
-module.exports = {
-  initializeApp,
-  configApp,
-  tokenApp,
-
-
-
-
-
-
-
-
-
-
 
 class Person {
   constructor(created, username, email, phone, token, expires, confirmed) {

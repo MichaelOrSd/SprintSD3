@@ -13,25 +13,25 @@ init all            creates the folder structure and run again to create init.tx
 init make           creates the views folder structure
 init cat            creates the config file with default settings`;
 
-function initializeApp() {
+function initApp() {
   const myArgs = process.argv.slice(2);
 
   switch (myArgs[1]) {
     case "all":
       createFolder();
-      if (DEBUG) console.log("initializeApp.All() all");
+      if (DEBUG) console.log("initApp.All() all");
       break;
     case "make":
       createFolder(); // makes the views folder
-      if (DEBUG) console.log("initializeApp.All() make");
+      if (DEBUG) console.log("initApp.All() make");
       break;
     case "cat":
       createFile(); // creates the config.json file
-      if (DEBUG) console.log("initializeApp.createFile() cat");
+      if (DEBUG) console.log("initApp.createFile() cat");
       console.log("config ran");
       break;
     default:
-      if (DEBUG) console.log("initializeApp - default");
+      if (DEBUG) console.log("initApp - default");
   }
 }
 
@@ -74,6 +74,6 @@ function createFile() {
 }
 
 module.exports = {
-  initializeApp,
+  initApp,
   configTemp,
 };

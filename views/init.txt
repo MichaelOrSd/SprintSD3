@@ -1,8 +1,0 @@
-
-myapp init <command>
-
-Usage:
-
-init --all          creates the folder structure and config file
-init --mk           creates the folder structure
-init --cat          creates the config file with default settings

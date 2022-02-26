@@ -29,14 +29,13 @@ date, Author, description;
 2. 22 Feb 2022 by Roderick Wells
 3. 23 Feb 2022 by Michael O'Reilly
 
-
 */
 
 // set to true to turn on, false to turn off
 global.DEBUG = true;
 
 const fs = require("fs");
-const { initializeApp } = require("./init.js");
+const { initApp } = require("./init.js");
 const { configApp } = require("./config.js");
 const { tokenApp } = require("./token.js");
 
@@ -47,7 +46,7 @@ switch (myArgs[0]) {
   case "init":
   case "i":
     if (DEBUG) console.log(myArgs[0], " - initialize the app.");
-    initializeApp();
+    initApp();
     break;
   case "config":
   case "c":
