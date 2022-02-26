@@ -49,8 +49,8 @@ class DoublyLinkedList {
     this.tail = null;
   }
 
-  insert(person) {
-    let node = new Node(person),
+  insert(Person) {
+    let node = new Node(Person),
       current = this.head,
       previous;
     if (!this.head) {
