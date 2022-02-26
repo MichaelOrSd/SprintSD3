@@ -4,19 +4,23 @@ file name: app.js
 This is the main routines to start the initialization app
 
 commands:
-app init all                                                    creates the folder structure and config files for the
+
+app help                                                        displays a list of the available commands
+
 app init make                                                   creates the folder structure and config files for
 app init cat                                                    creates the config file with default settings
+
 app config show                                                 displays a list of the current config settings
+app config set <key> <new>                                      sets a specific config settings
 app config reset                                                resets the config file with default settings
-app config set                                                  sets a specific config settings
+
 app token count                                                 displays a count of the token created
 app token list                                                  displays a list of the token created
 app token new <username>                                        generates a token for a given username, saves tokens to the json file 
-app token update phone or email <username> <phone or email>     updates the phone or email for the user.
+app token update (phone/email) <username> <phone or email>      updates the phone or email for the user.
 app token fetch <username>                                      fetches a token for a given username
 app token search <username>                                     searches for a token for a given username
-app help                                                        displays a list of the available commands
+
 
 
 created Date: 21 Feb 2022
@@ -40,12 +44,12 @@ const { configApp } = require("./config.js");
 const { tokenApp } = require("./token.js");
 
 const myArgs = process.argv.slice(2);
-if (DEBUG) if (myArgs.length > 1) console.log("the myapp.args: ", myArgs);
+if (DEBUG) if (myArgs.length > 1) console.log("the app.args: ", myArgs);
 
 switch (myArgs[0]) {
   case "init":
   case "i":
-    if (DEBUG) console.log(myArgs[0], " - initialize the app.");
+    if (DEBUG) console.log(myArgs[0], " - init the app.");
     initApp();
     break;
   case "config":

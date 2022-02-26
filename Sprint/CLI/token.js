@@ -141,11 +141,6 @@ function fetchRecord(username) {
   });
 }
 
-// function searchToken() {
-//   if (DEBUG) console.log("token.searchToken()");
-//   myEmitter.emit("log", "token.searchToken()", "INFO", `Token was found.`);
-// }
-
 function addDays(date, days) {
   var result = new Date(date);
   result.setDate(result.getDate() + days);
@@ -154,7 +149,7 @@ function addDays(date, days) {
 
 function tokenApp() {
   if (DEBUG) console.log("tokenApp()");
-  myEmitter.emit("log", "token.tokenApp()", "INFO", `Token option was called by CLI.`);
+  myEmitter.emit("log", "token.tokenApp()", "INFO", `Token was called by CLI.`);
 
   switch (myArgs[1]) {
     case "count":
@@ -178,7 +173,7 @@ function tokenApp() {
     case "help":
     case "h":
     default:
-      fs.readFile(__dirname + "/views/token.txt", (error, data) => {
+      fs.readFile(__dirname + "/usage.txt", (error, data) => {
         if (error) throw error;
         console.log(data.toString());
       });

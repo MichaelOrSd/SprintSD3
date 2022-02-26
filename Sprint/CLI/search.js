@@ -1,5 +1,5 @@
-searchList = (data) => {
-  const dlist = require(",/DoubleLinkedList");
+const searchList = (data) => {
+  const dlist = require("./DoubleLinkedList");
   const list = new dlist.DoublyLinkedList();
 
   var json = JSON.parse(require("fs").readFileSync("tokens.json", "utf 8"));
@@ -32,3 +32,4 @@ searchList = (data) => {
     if (testConfirmed == confirmed) return confirmed;
   }
 };
+searchList();

@@ -9,21 +9,16 @@ app init <command>
 
 Usage:
 
-init all            creates the folder structure and run again to create init.txt file
-init make           creates the views folder structure
+init make           creates the views folder structure and once run again the init.txt file
 init cat            creates the config file with default settings`;
 
 function initApp() {
-  const myArgs = process.argv.slice(2);
+  const myArgs = process.argv.slice(2); // remove the first two arguments
 
   switch (myArgs[1]) {
-    case "all":
-      createFolder();
-      if (DEBUG) console.log("initApp.All() all");
-      break;
     case "make":
       createFolder(); // makes the views folder
-      if (DEBUG) console.log("initApp.All() make");
+      if (DEBUG) console.log("initApp.createFolder() make");
       break;
     case "cat":
       createFile(); // creates the config.json file
@@ -52,8 +47,8 @@ function createFolder() {
 const configTemp = {
   name: "AppConfigCLI",
   version: "1.0.0",
-  description: "The Command Line Interface (CLI) for the MyApp.",
-  main: "myapp.js",
+  description: "The Command Line Interface (CLI) for the App.",
+  main: "app.js",
   superuser: "adm1n",
   database: "testdb",
 };

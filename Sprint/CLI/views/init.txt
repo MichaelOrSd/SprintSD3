@@ -1,8 +1,7 @@
 
-myapp init <command>
+app init <command>
 
 Usage:
 
-init all          creates the folder structure and config file
-init make           creates the folder structure
-init cat          creates the config file with default settings
+init make           creates the views folder structure and once run again the init.txt file
+init cat            creates the config file with default settings
