@@ -29,7 +29,6 @@ const fs = require("fs");
 const path = require("path");
 const crc32 = require("crc/crc32");
 const { format } = require("date-fns");
-const { searchList } = require("./search.js");
 
 const myArgs = process.argv.slice(2);
 
@@ -166,9 +165,6 @@ function tokenApp() {
       break;
     case "fetch":
       fetchRecord(myArgs[2]);
-      break;
-    case "search":
-      searchList();
       break;
     case "help":
     case "h":

@@ -16,5 +16,5 @@ app token list                                                  displays a list 
 app token new <username>                                        generates a token for a given username, saves tokens to the json file 
 app token update (phone/email) <username> <phone or email>     updates the phone or email for the user
 app token fetch <username>                                      fetches a token for a given username
-app token search <username>
+app search <username>                                           creates a DLL and searches for a username.
 

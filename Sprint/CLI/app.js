@@ -19,7 +19,7 @@ app token list                                                  displays a list 
 app token new <username>                                        generates a token for a given username, saves tokens to the json file 
 app token update (phone/email) <username> <phone or email>      updates the phone or email for the user.
 app token fetch <username>                                      fetches a token for a given username
-app token search <username>                                     searches for a token for a given username
+app search <username>                                           creates a DLL and searches for a username.
 
 
 
@@ -42,6 +42,7 @@ const fs = require("fs");
 const { initApp } = require("./init.js");
 const { configApp } = require("./config.js");
 const { tokenApp } = require("./token.js");
+const { searchApp } = require("./main.js");
 
 const myArgs = process.argv.slice(2);
 if (DEBUG) if (myArgs.length > 1) console.log("the app.args: ", myArgs);
@@ -61,6 +62,11 @@ switch (myArgs[0]) {
   case "t":
     if (DEBUG) console.log(myArgs[0], " - generate a user token.");
     tokenApp();
+    break;
+  case "search":
+  case "s":
+    if (DEBUG) console.log(myArgs[0], " - search for a username.");
+    searchApp();
     break;
   case "help":
   case "h":
